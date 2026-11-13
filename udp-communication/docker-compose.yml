@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  udp_server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    ports:
+      - "8080:8080"
+    tty: true  # เพิ่มบรรทัดนี้เพื่อให้ container รันต่อไป
+
+  udp_client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    depends_on:
+      - udp_server
