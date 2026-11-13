@@ -1,0 +1,13 @@
+services:
+  web_app:
+    build:
+      context: .
+    container_name: flask_message_app
+    ports:
+      - "5000:5000"
+    environment:
+      - LOG_FILE=/app/logs/log.txt
+    volumes:
+      # bind mount: โฟลเดอร์ ./logs บนเครื่อง <-> /app/logs ใน container
+      # log.txt จะอยู่ที่ flask-message-app/logs/log.txt และไม่หายเมื่อลบ container
+      - ./logs:/app/logs
